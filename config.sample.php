@@ -26,6 +26,9 @@ $rootPath = dirname($_SERVER['DOCUMENT_URI']);
 ini_set('session.name', 'PHPSESSID_Rockmongo');
 ini_set('session.cookie_path', $rootPath);
 
+//default language stub
+if (!isset($_COOKIE["ROCK_LANG"])) $_COOKIE["ROCK_LANG"] = 'en_us';
+
 $MONGO = array();
 $MONGO["features"]["log_query"] = "on";//log queries
 $MONGO["features"]["theme"] = "default";//theme
