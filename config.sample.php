@@ -18,6 +18,14 @@ $save_path = $currentSessionPath . DIRECTORY_SEPARATOR . 'rockmongo';
 if (!is_dir($save_path)) mkdir($save_path, 0777, true);
 ini_set('session.save_path', $save_path);
 
+// #4592
+// Устанавливаю путь для куки сессии.
+// Чтобы было меньше путаницы, имя куки тоже изменяю.
+// Это настраивать вообще надо на уровне конфигов веб-сервера, конечно.
+$rootPath = dirname($_SERVER['DOCUMENT_URI']);
+ini_set('session.name', 'PHPSESSID_Rockmongo');
+ini_set('session.cookie_path', $rootPath);
+
 $MONGO = array();
 $MONGO["features"]["log_query"] = "on";//log queries
 $MONGO["features"]["theme"] = "default";//theme
